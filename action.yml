@@ -1,0 +1,17 @@
+name: 'Veracode scan results to GitHub issues'
+description: 'Import the results of a Veracode scan as Issues for a repo'
+inputs:
+  scan-results-json:
+    description: 'Scan results file'
+    required: true
+    default: 'filtered_results.json'
+  github-token:
+    description: 'GitHub token to access the repo'
+    required: true
+  wait-time:
+    description: 'Delay (in seconds) between entering Issues into GitHub (due to rate limiting)'
+    required: false
+    default: '2'
+runs:
+  using: 'node12'
+  main: 'index.js'

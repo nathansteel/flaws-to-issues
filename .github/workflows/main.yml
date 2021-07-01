@@ -1,0 +1,20 @@
+on: [push]
+
+jobs:
+  import_flaws_job:
+    runs-on: ubuntu-latest
+    name: import flaws
+
+    steps:
+    # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+    - name: checkout code
+      uses: actions/checkout@v2
+
+    - name: Flaw importer action step
+      id: import
+      #uses: buzzcode/veracode-flaws-to-issues@v0.0.1
+      uses: buzzcode/veracode-flaws-to-issues@main
+      with:
+        #pipeline-results-json: 'test/results_trimmed.json'
+        scan-results-json: 'test/policy_trimmed.json'
+        github-token: ${{ secrets.GITHUB_TOKEN }}
